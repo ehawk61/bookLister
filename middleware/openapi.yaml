@@ -1,0 +1,25 @@
+openapi: 3.1.0
+info:
+ title: bookLister API
+ license:
+   name: BSD-3 Clause
+   url: https://opensource.org/license/BSD-3-clause
+ version: 0.0.1
+servers:
+  - url: /api
+paths:
+  /healthcheck:
+    get:
+      operationId: bookListerHealthCheck
+      summary: Ensure BookLister API is running
+      security: []
+      responses:
+        "200":
+          description: BookLister API is up and running
+        default:
+          description: Something is wrong 
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

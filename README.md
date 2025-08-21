@@ -5,5 +5,4 @@
 - Work In Progress so no Getting Started just yet
 
 ## Development
-- Currently the developer is using nixOS so one can run `nix-shell development.nix`
 - one can import the `bookLister.db.sql` to create the SQLite3 database 

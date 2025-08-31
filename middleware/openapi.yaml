@@ -4,7 +4,7 @@ info:
  license:
    name: BSD-3 Clause
    url: https://opensource.org/license/BSD-3-clause
- version: 0.0.1
+ version: 0.0.2
 servers:
   - url: /api
 paths:
@@ -16,8 +16,31 @@ paths:
       responses:
         "200":
           description: BookLister API is up and running
-        default:
-          description: Something is wrong 
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - status
+                status:
+                  type: string
+                  enum: ['RUNNING', 'DOWN']
+              example:
+                status: RUNNING
+
+        "503":
+         description: Bookister API has something wrong
+         content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - status
+                status:
+                  type: string
+                  enum: ['RUNNING', 'DOWN']
+              example:
+                status: DOWN
 components:
   securitySchemes:
     BasicAuth:

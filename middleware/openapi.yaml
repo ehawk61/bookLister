@@ -4,7 +4,7 @@ info:
  license:
    name: BSD-3 Clause
    url: https://opensource.org/license/BSD-3-clause
- version: 0.0.4
+ version: 0.0.5
 servers:
   - url: https://localhost:{port}/{basePath}
     description: localhost
@@ -22,6 +22,15 @@ paths:
       operationId: bookListerHealthCheck
       summary: Ensure BookLister API is running
       security: []
+      parameters:
+        - in: header
+          name: X-API-Version
+          schema:
+            type: string
+            default: v1
+            examples:
+              - v1
+              - v2
       responses:
         "200":
           description: BookLister API is up and running

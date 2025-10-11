@@ -1,0 +1,28 @@
+FROM docker.io/library/eclipse-temurin:24-alpine as base
+MAINTAINER Jonathan Meek code@meeknot.es
+
+RUN java --version 
+
+RUN apk add --no-cache curl unzip bash
+
+RUN curl -L "https://github.com/JetBrains/kotlin/releases/download/v2.2.20/kotlin-compiler-2.2.20.zip" --output kotlin-compiler.zip && \
+unzip kotlin-compiler.zip && \
+mv kotlinc /opt/kotlinc && \
+rm kotlin-compiler.zip 
+
+ENV PATH="/opt/kotlinc/bin:${PATH}"
+
+WORKDIR /app
+
+RUN kotlin -version
+
+FROM base as development
+MAINTAINER Jonathan Meek code@meeknot.es
+
+# Add debugging tools 
+
+CMD ["tail", "-f", "/dev/null"]
+
+
+
+

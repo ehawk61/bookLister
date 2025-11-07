@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "es.meeknot"
-version = "0.0.1"
+version = "0.0.5"
 
 application {
     mainClass = "io.ktor.server.netty.EngineMain"

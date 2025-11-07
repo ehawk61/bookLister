@@ -18,7 +18,7 @@ data class HealthcheckResponse(val apiVersion: String, val status: String)
 class ApplicationTest {
 
     @Test
-    fun testRoot() = testApplication {
+    fun testHealthCheckWithoutAPIVersionHeader() = testApplication {
         application { module() }
         val client = createClient {
             install(ContentNegotiation) {
@@ -29,6 +29,28 @@ class ApplicationTest {
             assertEquals(HttpStatusCode.OK, status)
             runBlocking {
                 val expectedRepsonse = HealthcheckResponse(apiVersion = "Undefined Version", status = "UP")
+                val acutalResponse = body<HealthcheckResponse>()
+                assertEquals(expectedRepsonse, acutalResponse)
+            }
+        }
+    }
+
+    @Test
+    fun testHealthCheckWithAPIVersionHeaderV1() = testApplication {
+        application { module() }
+        val client = createClient {
+            install(ContentNegotiation) {
+                json()
+            }
+        }
+        client.get("/healthcheck") {
+            headers {
+                append("X-API-Version", "v1")
+            }
+        }.apply {
+            assertEquals(HttpStatusCode.OK, status)
+            runBlocking {
+                val expectedRepsonse = HealthcheckResponse(apiVersion = "v1", status = "UP")
                 val acutalResponse = body<HealthcheckResponse>()
                 assertEquals(expectedRepsonse, acutalResponse)
             }

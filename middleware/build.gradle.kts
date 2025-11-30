@@ -11,6 +11,21 @@ application {
     mainClass = "io.ktor.server.netty.EngineMain"
 }
 
+kotlin {
+    jvmToolchain(25)
+    compilerOptions {
+       jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_24)
+    }
+}
+
+java {
+   toolchain {
+       languageVersion.set(JavaLanguageVersion.of(25))
+   }
+   sourceCompatibility = JavaVersion.VERSION_24
+   targetCompatibility = JavaVersion.VERSION_24
+}
+
 dependencies {
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.host.common)

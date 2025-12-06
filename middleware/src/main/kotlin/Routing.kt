@@ -19,8 +19,11 @@ fun Application.configureRouting() {
         get("/healthcheck") {
             val apiVersionValue = call.request.headers["X-API-Version"]
             when (apiVersionValue) {
-                "v1" -> call.respond(HttpStatusCode.OK, mapOf("apiVersion" to apiVersionValue, "status" to "UP"))
-                else -> call.respond(HttpStatusCode.OK, mapOf("apiVersion" to "Undefined Version", "status" to "UP"))
+                "v1" -> call.respond(HttpStatusCode.OK, mapOf("apiVersion" to apiVersionValue, "status" to "RUNNING"))
+                else -> call.respond(
+                    HttpStatusCode.OK,
+                    mapOf("apiVersion" to "Undefined Version", "status" to "RUNNING")
+                )
             }
         }
     }

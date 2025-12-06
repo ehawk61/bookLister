@@ -28,7 +28,7 @@ class ApplicationTest {
         client.get("/healthcheck").apply {
             assertEquals(HttpStatusCode.OK, status)
             runBlocking {
-                val expectedRepsonse = HealthcheckResponse(apiVersion = "Undefined Version", status = "UP")
+                val expectedRepsonse = HealthcheckResponse(apiVersion = "Undefined Version", status = "RUNNING")
                 val acutalResponse = body<HealthcheckResponse>()
                 assertEquals(expectedRepsonse, acutalResponse)
             }
@@ -50,7 +50,7 @@ class ApplicationTest {
         }.apply {
             assertEquals(HttpStatusCode.OK, status)
             runBlocking {
-                val expectedRepsonse = HealthcheckResponse(apiVersion = "v1", status = "UP")
+                val expectedRepsonse = HealthcheckResponse(apiVersion = "v1", status = "RUNNING")
                 val acutalResponse = body<HealthcheckResponse>()
                 assertEquals(expectedRepsonse, acutalResponse)
             }

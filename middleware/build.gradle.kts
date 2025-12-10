@@ -46,3 +46,23 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+koverReport {
+    filters {
+        excludes {
+            classes(
+                "*.ApplicationKt",
+                "*.*\$*"
+            )
+        }
+    }
+
+    defaults {
+        verify {
+            onCheck = true
+
+            rule {
+                minBound(70)
+            }
+        }
+    }
+}

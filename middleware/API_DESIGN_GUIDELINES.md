@@ -52,10 +52,21 @@ Any API Request to the bookLister API will be required to contain the following 
    - Expected to be a UUIDv4 entry   
 
 ### bookLister Endpoints
+Over time this list will change but its a best guess at the moment 
+
 | HTTP Verb | URI                | URI Intention                                                | Development Notes    |
 | --------- | ------------------ | ------------------------------------------------------------ | -------------------- |
 | GET       | /books             | Get all books within the database                            | pagination is needed |
+| POST      | /books             | Add books to the database                                    | 1 or many books      |
 | GET       | /books/{id}        | Get a single book by its id                                  |                      |
-| GET       | /books/q?title=""  | Search for all books by title that contains provided string  |                      |
-| GET       | /books/q?author="" | Search for all books by author that contains provided string |                      |
+| PUT       | /books/{id}        | Update a book by its id                                      |                      |
+| DELETE    | /books/{id}        | Delete a book by its id                                      |                      |
+| GET       | /books/q?title=""  | Search for all books by title that contains provided string  | pagination is needed |
+| GET       | /books/q?author="" | Search for all books by author that contains provided string | pagination is needed |
+| GET       | /authors           | Get all the authors within the database                      | pagination is needed | 
+| POST      | /authors           | Add author(s) to the database                                | 1 or many authors    |
+| GET       | /authors/{id}      | Get a single author by its id                                |                      |
+| PUT       | /authors/{id}      | Update an author by its id                                   |                      |
+| DELETE    | /authors/{id}      | Delete an author by its id                                   |                      |
+| GET       | /authors/q?name="" | Search for all authors by name that contains provided string | pagination is needed | 
 | GET       | /healthcheck       | Check the status of the bookLister API                       |                      |

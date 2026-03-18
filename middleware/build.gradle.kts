@@ -1,45 +1,34 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.ktor)
-    alias(libs.plugins.kotlin.plugin.serialization)
-    alias(libs.plugins.kover)
+	java
+	id ("jacoco")
+	id("org.springframework.boot") version "4.0.3"
+	id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "es.meeknot"
-version = "0.0.5"
+version = "0.0.5-SNAPSHOT"
 
-application {
-    mainClass = "io.ktor.server.netty.EngineMain"
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+}
+
+repositories {
+	mavenCentral()
 }
 
 dependencies {
-    implementation(libs.ktor.server.core)
-    implementation(libs.ktor.server.host.common)
-    implementation(libs.ktor.server.content.negotiation)
-    implementation(libs.ktor.server.status.pages)
-    implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.ktor.server.netty)
-    implementation(libs.logback.classic)
-    implementation(libs.ktor.server.config.yaml)
-
-    testImplementation(libs.ktor.client.content.negotiation)
-    testImplementation(libs.ktor.server.test.host)
-    testImplementation(libs.kotlin.test)
-    testImplementation(libs.kotlinx.coroutines.test)
+	implementation("org.springframework.boot:spring-boot-h2console")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-webmvc")
+	runtimeOnly("com.h2database:h2")
+	runtimeOnly("org.postgresql:postgresql")
+	testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
-
-kover.reports {
-    filters.excludes {
-        classes(
-            "*.ApplicationKt",
-            "*.*\$*"
-        )
-    }
-    verify.rule {
-            minBound(70)
-    }
+tasks.withType<Test> {
+	useJUnitPlatform()
 }

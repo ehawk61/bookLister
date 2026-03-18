@@ -1,7 +1,1 @@
-rootProject.name = "booklister-api"
-
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-    }
-}
+rootProject.name = "booklister"

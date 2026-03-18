@@ -6,3 +6,4 @@
 
 ## Development
 - one can import the `bookLister.db.sql` to create the SQLite3 database 
+- Ideas for the API are located in the [API Design Spec](bookLister/middleware/API_DESIGN_GUIDELINES.md)

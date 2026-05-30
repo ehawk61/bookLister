@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout bookLister
-        uses: actions/checkout@4
+        uses: actions/checkout@6
 
       - name: Setup JDK 26
-        uses: actions/setup-java@4
+        uses: actions/setup-java@5
         with:
           distribution: temurin
           java-version: "26"
@@ -32,6 +32,33 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+
       - name: Make gradlew Runnable
         working-directory: middleware
         run: chmod +x gradlew
+
+      - name: Build bookLister
+        working-directory: middleware
+        run: ./gradlew build -x test
+
+      - name: Run bookLister tests with coverage
+        run: ./gradlew test jacocoTestReport jacocoTestCoverageVerification
+
+      - name: Upload coverage report for bookLister
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-coverage-report
+          path: build/reports/jacoco/test/html/
+          retention-days: 14
+
+      - name: Add coverage summary to PR
+        if: github.event_name == 'pull_request'
+        uses: madrapps/jacoco-report@v1.7.1
+        with:
+          paths: build/reports/jacoco/test/jacocoTestReport.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 80
+          min-coverage-changed-files: 90
+          title: "## Test Coverage Report"
+          update-comment: true

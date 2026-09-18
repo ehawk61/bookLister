@@ -1,10 +1,11 @@
 openapi: 3.1.0
 info:
- title: bookLister API
- license:
-   name: BSD-3 Clause
-   url: https://opensource.org/license/BSD-3-clause
- version: 0.0.5
+  title: bookLister API
+  description: API for the bookLister application, which allows one to keep track of the books one has read
+  license:
+    name: BSD-3 Clause
+    url: https://opensource.org/license/BSD-3-clause
+  version: 0.0.5
 servers:
   - url: https://localhost:{port}/{basePath}
     description: localhost

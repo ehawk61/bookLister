@@ -12,11 +12,11 @@ servers:
     variables:
       port:
         enum:
-          - '8080'
-        default: '8080'
-        descripton: what port the API is running on
+          - "8080"
+        default: "8080"
+        description: what port the API is running on
       basePath:
-        default: 'api'
+        default: "api"
 paths:
   /healthcheck:
     get:
@@ -38,15 +38,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HealthCheckResponse'
+                $ref: "#/components/schemas/HealthCheckResponse"
               example:
                 status: RUNNING
         "503":
-         description: Bookister API has something wrong
-         content:
+          description: Bookister API has something wrong
+          content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HealthCheckResponse'
+                $ref: "#/components/schemas/HealthCheckResponse"
               example:
                 status: DOWN
 components:
@@ -57,7 +57,7 @@ components:
         - status
       status:
         type: string
-        enum: ['RUNNING', 'DOWN']
+        enum: ["RUNNING", "DOWN"]
   securitySchemes:
     BasicAuth:
       type: http

@@ -65,7 +65,6 @@ components:
       status:
         type: string
         enum: ["RUNNING", "DOWN"]
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
+      examples:
+        - status: RUNNING
+        - status: DOWN

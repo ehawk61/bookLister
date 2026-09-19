@@ -17,11 +17,16 @@ servers:
         description: what port the API is running on
       basePath:
         default: "api"
+tags:
+  - name: Health
+    description: Collect of endpoints for the health of the application
 paths:
   /healthcheck:
     get:
       operationId: bookListerHealthCheck
       summary: Ensure BookLister API is running
+      tags:
+        - Health
       security: []
       parameters:
         - in: header

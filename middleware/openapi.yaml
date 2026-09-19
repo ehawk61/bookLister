@@ -59,6 +59,7 @@ components:
   schemas:
     HealthCheckResponse:
       type: object
+      description: Response Body for the Health Check API
       required:
         - status
       status:

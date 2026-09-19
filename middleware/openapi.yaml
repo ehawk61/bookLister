@@ -31,6 +31,7 @@ paths:
       parameters:
         - in: header
           name: X-API-Version
+          description: Indicates the which version of the API that should be used
           schema:
             type: string
             default: v1

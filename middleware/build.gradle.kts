@@ -10,8 +10,12 @@ version = "0.0.5-SNAPSHOT"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(26)
+		languageVersion = JavaLanguageVersion.of(27)
 	}
+}
+
+jacoco {
+    toolVersion = "0.8.16"
 }
 
 repositories {
